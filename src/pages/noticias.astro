@@ -1,0 +1,335 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// --- DATOS MANUALES (Noticias Fijas) ---
+const NEWS_DATA = [
+  {
+    id: 1,
+    title: "YLB reporta récord histórico en producción de carbonato de litio",
+    category: "Minería & Industrialización",
+    date: "12 de Febrero, 2026",
+    description: "La estatal Yacimientos de Litio Bolivianos consolida su estrategia de extracción directa, superando las metas trimestrales en la planta del Salar de Uyuni.",
+    image: "https://pxcdn.eldeber.com.bo/eldeber/505217/092025/1757232862352.webp?cw=1200&ch=675&extw=jpg",
+    url: "#"
+  },
+  {
+    id: 2,
+    title: "Cochabamba apuesta por el transporte eléctrico masivo",
+    category: "Transporte",
+    date: "10 de Febrero, 2026",
+    description: "Nuevas unidades de buses eléctricos se integran a la red troncal, reduciendo emisiones y costos operativos.",
+    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80",
+    url: "#"
+  },
+  {
+    id: 3,
+    title: "Quantum Motors expande su red de electrolineras",
+    category: "Movilidad",
+    date: "08 de Febrero, 2026",
+    description: "La empresa boliviana inaugura puntos de carga rápida en el eje troncal para fortalecer su ecosistema.",
+    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80",
+    url: "#"
+  },
+  {
+    id: 4,
+    title: "Ende inaugura nuevo parque eólico en Santa Cruz",
+    category: "Energía Renovable",
+    date: "05 de Febrero, 2026",
+    description: "El proyecto inyectará 40MW adicionales al Sistema Interconectado Nacional (SIN).",
+    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=800&q=80",
+    url: "#"
+  }
+];
+
+const featuredNews = NEWS_DATA[0];
+const secondaryNews = NEWS_DATA.slice(1);
+---
+
+<Layout title="Noticias | E2V Bolivia">
+  <main class="news-page">
+    
+    <section class="news-header">
+      <div class="container">
+        <div class="header-text">
+          <span class="eyebrow">Actualidad Nacional</span>
+          <h1>Monitor de Noticias</h1>
+          <p class="subtitle">Inteligencia de mercado sobre la transición energética en Bolivia.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="news-content">
+      <div class="container">
+        
+        <article class="featured-card">
+          <div class="feat-image-wrap">
+            <img src={featuredNews.image} alt={featuredNews.title} />
+            <span class="category-tag">{featuredNews.category}</span>
+          </div>
+          <div class="feat-content">
+            <span class="date">{featuredNews.date}</span>
+            <h2>{featuredNews.title}</h2>
+            <p>{featuredNews.description}</p>
+            <a href={featuredNews.url} class="read-btn">Leer noticia completa &rarr;</a>
+          </div>
+        </article>
+
+        <div class="news-grid">
+          {secondaryNews.map((news) => (
+            <article class="news-card">
+              <div class="card-image-wrap">
+                <img src={news.image} alt={news.title} />
+                <span class="category-tag-sm">{news.category}</span>
+              </div>
+              <div class="card-content">
+                <span class="date-sm">{news.date}</span>
+                <h3>{news.title}</h3>
+                <a href={news.url} class="read-link">Leer más</a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  /* --- BASE --- */
+  .news-page {
+    background-color: var(--brand-100);
+    min-height: 100vh;
+    padding-bottom: 5rem;
+  }
+  
+  .container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* --- HEADER --- */
+  .news-header {
+    background-color: var(--brand-800);
+    padding: 4rem 0;
+    color: var(--white);
+    border-bottom: 4px solid var(--cta-main);
+    margin-bottom: 3rem;
+  }
+
+  .header-text { text-align: center; }
+
+  .eyebrow {
+    color: var(--cta-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0;
+    line-height: 1;
+    font-family: var(--font-header);
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    color: var(--brand-200);
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+
+  /* --- CARD PRINCIPAL (FEATURED) --- */
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Imagen más ancha */
+    background: var(--white);
+    border: 1px solid var(--brand-200);
+    box-shadow: 8px 8px 0 var(--brand-800); /* Sombra dura oscura */
+    margin-bottom: 3rem;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .featured-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 var(--cta-main); /* Sombra cambia a naranja */
+  }
+
+  .feat-image-wrap {
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    border-right: 1px solid var(--brand-200);
+  }
+
+  .feat-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-tag {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: var(--cta-main);
+    color: var(--brand-800);
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .feat-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .date {
+    color: var(--tech-600);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feat-content h2 {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin: 0 0 1.5rem;
+    color: var(--brand-800);
+  }
+
+  .feat-content p {
+    color: var(--brand-600);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  /* --- GRID SECUNDARIO --- */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .news-card {
+    background: var(--white);
+    border: 1px solid var(--brand-200);
+    box-shadow: 6px 6px 0 var(--brand-200); /* Sombra dura gris */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0 var(--cta-main);
+    border-color: var(--brand-800);
+  }
+
+  .card-image-wrap {
+    height: 220px;
+    position: relative;
+    border-bottom: 1px solid var(--brand-200);
+  }
+
+  .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-tag-sm {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: var(--brand-800);
+    color: var(--white);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .date-sm {
+    font-size: 0.8rem;
+    color: var(--brand-400);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-content h3 {
+    font-size: 1.25rem;
+    margin: 0 0 1rem;
+    line-height: 1.3;
+    color: var(--brand-800);
+    flex: 1;
+  }
+
+  /* --- BOTONES --- */
+  .read-btn {
+    display: inline-block;
+    background: var(--brand-800);
+    color: var(--white);
+    padding: 1rem 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: background 0.2s;
+  }
+
+  .read-btn:hover {
+    background: var(--cta-main);
+    color: var(--brand-800);
+  }
+
+  .read-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--brand-800);
+    text-decoration: none;
+    border-bottom: 2px solid var(--cta-main);
+    align-self: flex-start;
+    font-size: 0.9rem;
+    padding-bottom: 2px;
+  }
+  .read-link:hover {
+    color: var(--cta-main);
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    .featured-card {
+      grid-template-columns: 1fr; /* Apilado en vertical */
+    }
+    .feat-image-wrap {
+      min-height: 250px;
+      border-right: none;
+      border-bottom: 1px solid var(--brand-200);
+    }
+    .feat-content {
+      padding: 2rem;
+    }
+    .feat-content h2 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
