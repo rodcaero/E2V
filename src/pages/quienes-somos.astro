@@ -1,0 +1,323 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Quiénes Somos | E2V Bolivia">
+  <main class="quienes-somos-page">
+    
+    <section class="hero-section">
+      <div class="tech-grid-bg"></div>
+      <div class="container relative">
+        <span class="eyebrow fade-in">E2V Bolivia</span>
+        <h1 class="fade-in delay-1">Quiénes Somos</h1>
+        <p class="hero-lead fade-in delay-2">
+          Energía renovable con visión para Bolivia. <br>
+          <span class="highlight">Opciones energéticas reales, sostenibles y adaptadas.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="intro-section">
+      <div class="container grid-intro">
+        <div class="text-block">
+          <p class="lead-text">
+            <strong>E2V</strong> es una empresa boliviana enfocada en el desarrollo e implementación de soluciones basadas en energías renovables.
+          </p>
+          <p>
+            Iniciamos con infraestructura para movilidad eléctrica integrada a generación solar, con una visión clara: crear opciones energéticas reales, sostenibles y adaptadas al contexto boliviano.
+          </p>
+        </div>
+        <div class="purpose-card">
+          <div class="corner-deco top-left"></div>
+          <h3>Nuestro Propósito</h3>
+          <p>
+            Impulsar la transición energética en Bolivia mediante soluciones que mejoren la calidad de vida, fortalezcan la infraestructura nacional y preparen al país para el futuro.
+          </p>
+          <div class="corner-deco bottom-right"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mv-section">
+      <div class="container">
+        <div class="mv-grid">
+          <div class="mv-card">
+            <div class="icon-label">Misión</div>
+            <p>Desarrollar soluciones energéticas innovadoras, competitivas y sostenibles que integren energías renovables en proyectos reales y escalables.</p>
+          </div>
+          <div class="mv-card dark-card">
+            <div class="icon-label">Visión</div>
+            <p>Convertirnos en un referente nacional en infraestructura basada en energías renovables, promoviendo un modelo energético más eficiente y sostenible para Bolivia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="focus-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nuestro Enfoque</h2>
+          <p>Trabajamos bajo tres pilares fundamentales:</p>
+        </div>
+        <div class="focus-grid">
+          <div class="focus-item">
+            <div class="number-bg">01</div>
+            <h4>Energías renovables aplicadas</h4>
+            <p>Proyectos diseñados para implementarse en la realidad boliviana.</p>
+          </div>
+          <div class="focus-item">
+            <div class="number-bg">02</div>
+            <h4>Infraestructura con visión</h4>
+            <p>Soluciones de largo plazo pensadas para crecer junto al país.</p>
+          </div>
+          <div class="focus-item">
+            <div class="number-bg">03</div>
+            <h4>Innovación adaptada</h4>
+            <p>Tecnología adecuada a nuestra economía, normativa y entorno local.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section">
+      <div class="container">
+        <h2>Qué Hacemos</h2>
+        
+        <div class="services-grid">
+          <div class="service-card interactive">
+            <div class="tech-indicator power-indicator"></div>
+            <h4>Electroterminales y carga solar</h4>
+            <p>Instalación de electroterminales alimentadas por energía solar, reduciendo la dependencia de la red pública y facilitando la adopción de vehículos eléctricos en Bolivia.</p>
+          </div>
+
+          <div class="service-card interactive">
+            <div class="tech-indicator b2b-indicator"></div>
+            <h4>Soluciones para empresas</h4>
+            <p>Infraestructura y servicios orientados a:</p>
+            <ul class="micro-list">
+              <li>Flotas corporativas</li>
+              <li>Instituciones públicas</li>
+              <li>Condominios y Proyectos inmobiliarios</li>
+              <li>Industrias y Comercios</li>
+              <li>Sistemas solares híbridos y de respaldo</li>
+            </ul>
+          </div>
+
+          <div class="service-card interactive">
+            <div class="tech-indicator consult-indicator"></div>
+            <h4>Consultoría técnica</h4>
+            <p>Asesoramiento especializado para entidades públicas y privadas que desean migrar hacia energías renovables o movilidad eléctrica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="presence-values-section">
+      <div class="container grid-pv">
+        
+        <div class="presence-block">
+          <h3>Presencia</h3>
+          
+          <div class="animated-map-container">
+            <div class="map-grid-layer"></div> <div class="scz-marker-group">
+                <div class="scz-pulse"></div> <div class="scz-point"></div> <span class="scz-label">Santa Cruz</span>
+            </div>
+          </div>
+
+          <p>Iniciamos en Santa Cruz, con visión de expansión progresiva a nivel nacional.</p>
+        </div>
+
+        <div class="values-block">
+          <h3>Nuestros Valores</h3>
+          <ul class="values-chips">
+            <li>Compromiso con Bolivia</li>
+            <li>Innovación con propósito</li>
+            <li>Sostenibilidad</li>
+            <li>Responsabilidad futura</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  /* --- Estructura Base --- */
+  .quienes-somos-page { background-color: var(--white); color: var(--text-main); }
+  .container { max-width: var(--content-max-width); margin: 0 auto; padding: 0 1.5rem; }
+  .relative { position: relative; }
+
+  /* --- Hero --- */
+  .hero-section {
+    padding: 7rem 0 5rem; background-color: var(--bg-main); position: relative; overflow: hidden; border-bottom: 1px solid var(--brand-200);
+  }
+  .tech-grid-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(var(--brand-200) 1px, transparent 1px), linear-gradient(90deg, var(--brand-200) 1px, transparent 1px);
+    background-size: 50px 50px; opacity: 0.1;
+  }
+  .eyebrow {
+    color: var(--cta-dark); background-color: var(--cta-main); padding: 0.25rem 0.75rem; font-weight: 700; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 1rem;
+  }
+  h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin: 0 0 1rem; color: var(--brand-800); line-height: 1; }
+  .hero-lead { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; line-height: 1.5; }
+  .highlight { color: var(--tech-600); font-weight: 500; }
+
+  /* --- Intro & Purpose --- */
+  .intro-section { padding: 5rem 0; }
+  .grid-intro { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
+  .lead-text { font-size: 1.15rem; line-height: 1.6; color: var(--brand-600); }
+  .purpose-card { background-color: var(--brand-800); color: var(--white); padding: 2.5rem; position: relative; }
+  .purpose-card h3 { color: var(--cta-main); margin-top: 0; }
+  .corner-deco { position: absolute; width: 20px; height: 20px; border: 2px solid var(--cta-main); }
+  .top-left { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+  .bottom-right { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+  /* --- Mission & Vision --- */
+  .mv-section { padding: 4rem 0; background-color: var(--tech-100); }
+  .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .mv-card { background: var(--white); padding: 3rem; border: 1px solid var(--brand-200); transition: transform 0.3s ease; }
+  .mv-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+  .dark-card { background: var(--brand-800); color: var(--white); border: none; }
+  .icon-label { font-family: var(--font-header); font-weight: 700; text-transform: uppercase; font-size: 1.5rem; margin-bottom: 1rem; color: var(--cta-main); display: block; }
+
+  /* --- Focus (Enfoque) --- */
+  .focus-section { padding: 6rem 0; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .focus-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .focus-item {
+    padding: 2rem; border-top: 4px solid var(--cta-main); background: var(--white); position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  }
+  .number-bg { position: absolute; top: -10px; right: -10px; font-size: 5rem; font-weight: 700; color: var(--brand-100); z-index: 0; font-family: var(--font-header); }
+  .focus-item h4, .focus-item p { position: relative; z-index: 1; }
+  .focus-item h4 { color: var(--brand-800); margin-bottom: 0.5rem; }
+
+  /* --- Services (NUEVOS ESTILOS TÉCNICOS) --- */
+  .services-section { padding: 5rem 0; background-color: var(--brand-100); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem; }
+  .service-card {
+    background: var(--white); padding: 2.5rem; border: 1px solid var(--brand-200);
+    box-shadow: 4px 4px 0 var(--brand-200); /* Sombra sólida técnica */
+    position: relative;
+  }
+  
+  /* Nuevos indicadores técnicos CSS en lugar de emojis */
+  .tech-indicator {
+    width: 40px; height: 6px; margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .tech-indicator::after {
+    content: ''; position: absolute; right: 0; top: -3px; width: 12px; height: 12px;
+    border-radius: 2px;
+  }
+
+  /* Variantes de color para los indicadores */
+  .power-indicator { background-color: var(--tech-200); }
+  .power-indicator::after { background-color: var(--cta-main); box-shadow: 0 0 10px var(--cta-main); }
+
+  .b2b-indicator { background-color: var(--brand-200); }
+  .b2b-indicator::after { background-color: var(--tech-600); }
+
+  .consult-indicator { background-color: var(--brand-200); }
+  .consult-indicator::after { background-color: var(--brand-800); }
+
+  .service-card h4 { color: var(--tech-600); margin-top: 0; }
+  
+  .micro-list { list-style: none; padding: 0; margin-top: 1rem; }
+  .micro-list li { padding: 0.25rem 0 0.25rem 1.25rem; position: relative; font-size: 0.95rem; border-bottom: 1px dashed var(--brand-200); }
+  .micro-list li:last-child { border-bottom: none; }
+  .micro-list li::before { content: "›"; color: var(--cta-main); font-weight: bold; position: absolute; left: 0; top: 0.25rem; }
+
+  /* --- Presence & Values (NUEVA ANIMACIÓN) --- */
+  .presence-values-section { padding: 6rem 0; background: var(--white); }
+  .grid-pv { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  
+  /* Contenedor del mapa animado */
+  .animated-map-container {
+    height: 200px;
+    background-color: var(--brand-800); /* Fondo oscuro para contraste técnico */
+    margin: 1.5rem 0;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden; /* Importante para la expansión */
+    border: 1px solid var(--brand-600);
+  }
+
+  /* Capa de fondo que se expande (efecto radar/zoom) */
+  .map-grid-layer {
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background-image: 
+        radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px, 40px 40px, 40px 40px;
+    transform-origin: center center;
+    animation: expandMap 4s ease-out forwards;
+  }
+
+  /* Grupo del marcador de Santa Cruz */
+  .scz-marker-group {
+    position: absolute; top: 50%; left: 50%; /* Centrado para el ejemplo */
+    transform: translate(-50%, -50%);
+    display: flex; align-items: center;
+    opacity: 0;
+    animation: appearMarker 1s ease-out 2s forwards; /* Aparece después de 2s */
+  }
+
+  /* Punto central sólido */
+  .scz-point {
+    width: 12px; height: 12px; background: var(--cta-main);
+    border-radius: 50%; position: relative; z-index: 2;
+  }
+
+  /* Onda expansiva pulsante */
+  .scz-pulse {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px; height: 12px;
+    background: rgba(254, 183, 64, 0.6); /* Color CTA con transparencia */
+    border-radius: 50%; z-index: 1;
+    animation: pulseWave 2s infinite;
+  }
+
+  .scz-label {
+    margin-left: 12px; font-weight: 700; color: var(--white);
+    font-family: var(--font-header); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* Valores visuales */
+  .values-chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+  .values-chips li { background: var(--brand-800); color: var(--white); padding: 0.5rem 1rem; font-size: 0.9rem; font-weight: 500; border-left: 3px solid var(--cta-main); }
+
+  /* --- Animaciones Keyframes --- */
+  .fade-in { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Animación de expansión del mapa */
+  @keyframes expandMap {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Animación de aparición del marcador */
+  @keyframes appearMarker {
+    to { opacity: 1; }
+  }
+
+  /* Animación de pulso continuo */
+  @keyframes pulseWave {
+    0% { width: 12px; height: 12px; opacity: 0.8; }
+    100% { width: 60px; height: 60px; opacity: 0; }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .grid-intro, .mv-grid, .grid-pv { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-section h1 { font-size: 2.5rem; }
+  }
+</style>

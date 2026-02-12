@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Configuración del Banner de Avisos
+const banner = {
+  active: true,
+  message: '¡Nuevas ubicaciones de ElectroPoint disponibles! Conoce más.',
+  link: '/',
+  type: 'info' 
+};
+
+// Contenido del Hero
+const heroContent = {
+  title: 'ENERGÍA QUE IMPULSA TU FUTURO',
+  subtitle: 'Soluciones eléctricas de vanguardia y puntos de carga inteligentes con el respaldo de E2V.',
+  ctaText: 'Descubre ElectroPoint',
+  ctaLink: '/quienes-somos',
+  image: '/hero-e2v.webp' 
+};
+
+// Datos de Noticias y Promociones
+const news = [
+  {
+    title: "Nueva Estación ElectroPoint en Equipetrol",
+    description: "Ampliamos nuestra red de carga inteligente. Ya puedes encontrar un nuevo punto de carga rápida en la zona norte.",
+    validity: "Disponible ahora",
+    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=500",
+    category: "Expansión"
+  },
+  {
+    title: "Mantenimiento Preventivo Industrial",
+    description: "Lanzamos paquetes especiales de revisión técnica para plantas industriales durante el mes de febrero.",
+    validity: "Hasta el 28 de febrero",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=500",
+    category: "Servicios"
+  },
+  {
+    title: "Webinar: Eficiencia Energética 2026",
+    description: "Únete a nuestra charla virtual sobre cómo reducir costos operativos mediante el monitoreo inteligente de energía.",
+    validity: "Evento: 15 de marzo",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=500",
+    category: "Evento"
+  }
+];
+---
+
+<Layout title="E2V - Ingeniería Eléctrica Avanzada">
+   <section id="contacto" class="section-contact">
+  <div class="container">
+    <div class="contact-header">
+      <span class="tag">Conectemos</span>
+      <h2 class="section-title">Hablemos de tu proyecto</h2>
+      <p>Estamos listos para ofrecerte la mejor asesoría técnica y soluciones energéticas.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info-item highlight">
+          <div class="info-icon whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h3>WhatsApp (Principal)</h3>
+            <a href="https://wa.me/591XXXXXXX" target="_blank" class="contact-link">+591 XXXXXXXX</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:info@e2v.bo" class="contact-link">info@e2v.bo</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h3>Teléfono Oficina</h3>
+            <span class="contact-link">+591 3 3543000</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required />
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa o Institución</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu organización" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+591" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Enviar Solicitud</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+  </main>
+</Layout>
+
+<style>
+   .tag { color: var(--tech-600); font-family: var(--font-main); font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: block; }
+  .section-title { font-size: 2.8rem; color: var(--brand-800); margin-bottom: 25px; font-family: var(--font-main); }
+
+  /*Contacto */
+    .section-contact {
+    padding: 40px ;
+    background-color: var(--brand-100);
+    font-family: var(--font-main);
+  }
+
+  .contact-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Info lateral */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 4px;
+    background: var(--brand-100);
+    transition: transform 0.3s ease;
+  }
+
+  .info-item.highlight {
+    background: var(--brand-800);
+    color: var(--white);
+  }
+
+  .info-item.highlight .contact-link {
+    color: var(--cta-main);
+  }
+
+  .info-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    color: var(--brand-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .info-item.highlight .info-icon {
+    background: var(--cta-main);
+    color: var(--brand-800);
+  }
+
+  .info-item h3 {
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--brand-800);
+  }
+
+  /* Formulario */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid var(--brand-200);
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    /*box-shadow: 0 10px 30px rgba(0,0,0,0.05);*/
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--brand-600);
+  }
+
+  .form-group input, .form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--brand-200);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--cta-main);
+  }
+
+  .btn-submit {
+    background: var(--brand-800);
+    color: white;
+    border: none;
+    padding: 18px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .btn-submit:hover {
+    background: var(--cta-main);
+    color: var(--brand-800);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .contact-form {
+      padding: 25px;
+    }
+  }
+</style>
