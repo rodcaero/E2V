@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  image: string;
+  slug: string;
+  meta_title: string;
+  meta_description: string;
+}
+
+export async function getStaticPaths() {
+  const allNews: any[] = await Astro.glob('../../data/noticias/*.md');
+  
+  return allNews.map((news) => ({
+    params: { slug: news.frontmatter.slug },
+    props: { news },
+  }));
+}
+
+interface Props {
+  news: {
+    frontmatter: Frontmatter;
+    compiledContent: () => string;
+  };
+}
+
+const { news } = Astro.props as Props;
+const { frontmatter, compiledContent } = news;
+---
+
+<Layout title={frontmatter.meta_title} description={frontmatter.meta_description}>
+  
+  <a href="/noticias" class="floating-back">
+    <span class="arrow">&larr;</span> Volver a noticias
+  </a>
+
+  <main class="article-page">
+    
+    <header class="header-wrapper">
+      <span class="category">{frontmatter.category}</span>
+      <h1>{frontmatter.title}</h1>
+      <span class="date">{frontmatter.date}</span>
+    </header>
+
+    <div class="hero-wrapper">
+      <img src={frontmatter.image} alt={frontmatter.title} class="hero-image" />
+    </div>
+
+    <article class="content-wrapper">
+      <div class="prose">
+        <Fragment set:html={compiledContent()} />
+      </div>
+    </article>
+
+  </main>
+</Layout>
+
+<style>
+  /* --- BASE Y FONDO --- */
+  .article-page { background: var(--brand-100, #f7fafc); padding-bottom: 5rem; position: relative; }
+  
+  /* --- TÍTULO Y META DATOS --- */
+  .header-wrapper { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem 3rem; text-align: center; }
+  .category { background: var(--cta-main, #f97316); color: #1a202c; padding: 0.4rem 1.2rem; font-weight: 800; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; display: inline-block; margin-bottom: 1.5rem; }
+  h1 { font-size: clamp(2.2rem, 5vw, 4rem); color: #1a202c; line-height: 1.15; margin-bottom: 1rem; text-transform: uppercase; }
+  .date { color: #718096; font-weight: 600; font-size: 1.1rem; }
+
+  /* --- IMAGEN PANORÁMICA --- */
+  .hero-wrapper { width: 100%; }
+  /* object-fit: cover asegura que la foto no se deforme sin importar qué tan ancha sea la pantalla */
+  .hero-image { width: 100%; height: 65vh; min-height: 400px; object-fit: cover; }
+
+  /* --- CAJA DE TEXTO (Efecto Superpuesto) --- */
+  /* El margin-top negativo (-5rem) hace que la caja blanca suba y muerda la imagen */
+  .content-wrapper { max-width: 900px; margin: -5rem auto 0; background: white; padding: 4rem 3rem; position: relative; z-index: 10; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-top: 6px solid var(--cta-main, #f97316); }
+
+  /* --- TIPOGRAFÍA DEL MARKDOWN --- */
+  .prose { color: #4a5568; line-height: 1.8; font-size: 1.15rem; }
+  .prose :global(h2) { font-size: 2rem; color: #1a202c; margin-top: 2.5rem; margin-bottom: 1.2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+  .prose :global(p) { margin-bottom: 1.5rem; }
+  .prose :global(ul) { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+  .prose :global(li) { margin-bottom: 0.5rem; }
+  .prose :global(a) { color: var(--cta-main, #f97316); font-weight: bold; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+  .prose :global(a:hover) { border-bottom-color: var(--cta-main, #f97316); }
+
+  /* --- BOTÓN FLOTANTE (STICKY) --- */
+  .floating-back { position: fixed; bottom: 2rem; left: 2rem; background: var(--brand-800, #1a202c); color: white; padding: 1rem 1.5rem; border-radius: 50px; font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); z-index: 99; transition: all 0.3s ease; }
+  .floating-back:hover { background: var(--cta-main, #f97316); color: #1a202c; transform: translateY(-5px); }
+  .floating-back .arrow { font-size: 1.2rem; line-height: 1; }
+
+  /* --- ADAPTACIÓN PARA CELULARES --- */
+  @media (max-width: 768px) {
+    .content-wrapper { margin: -3rem 1rem 0; padding: 2rem 1.5rem; border-radius: 8px; }
+    .hero-image { height: 45vh; }
+    /* Hacemos el botón flotante un poco más pequeño para que no estorbe en la pantalla del celular */
+    .floating-back { bottom: 1.5rem; left: 1.5rem; padding: 0.8rem 1.2rem; font-size: 0.8rem; }
+  }
+</style>

@@ -4,6 +4,9 @@ description: "Bolivia establece un nuevo marco legal para proyectos de generaci�
 date: "2026-02-19"
 category: "Normativa"
 image: "https://pxcdn.reduno.com.bo/reduno/022026/1771498292241.webp?extw=jpg&cw=600&ch=365"
+slug: "nuevo-decreto-generacion-electrica-6mw-bolivia"
+meta_title: "Nuevo decreto regula generación eléctrica hasta 6 MW en Bolivia"
+meta_description: "Bolivia regula la generación eléctrica hasta 6 MW y fortalece energías renovables. Conoce su impacto en"
 ---
 
 Bolivia impulsa las energías renovables con un nuevo marco legal. El Estado boliviano publicó un decreto que regula la generación eléctrica de hasta 6 megavatios (MW), estableciendo un marco más claro para proyectos energéticos privados, especialmente aquellos vinculados a energías renovables como la solar.
