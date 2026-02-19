@@ -65,7 +65,42 @@ const navItems: NavItem[] = [
     });
   }
 </script>
+<script>
+  // Envolvemos toda la lógica en una función
+  function setupMenu() {
+    const btn = document.getElementById('btn-toggle');
+    const menu = document.getElementById('menu');
 
+    // Validamos que existan en el DOM actual
+    if (btn && menu) {
+      // 1. Limpiamos eventos anteriores para evitar que se dupliquen al cambiar de página
+      btn.onclick = null;
+      
+      // 2. Asignamos el evento de abrir/cerrar
+      btn.onclick = () => {
+        const isShowing = menu.classList.toggle('show');
+        btn.classList.toggle('open');
+        document.body.style.overflow = isShowing ? 'hidden' : 'auto';
+      };
+
+      // 3. Cerrar menú al hacer clic en cualquier enlace
+      const links = menu.querySelectorAll('a');
+      links.forEach(link => {
+        link.onclick = () => {
+          menu.classList.remove('show');
+          btn.classList.remove('open');
+          document.body.style.overflow = 'auto';
+        };
+      });
+    }
+  }
+
+  // Ejecutar cuando la página cargue por primera vez
+  setupMenu();
+
+  // Ejecutar CADA VEZ que el usuario navegue a otra página usando View Transitions
+  document.addEventListener('astro:page-load', setupMenu);
+</script>
 <style>
 
   .header {
