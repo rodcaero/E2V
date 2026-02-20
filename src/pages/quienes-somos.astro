@@ -136,7 +136,19 @@ import Layout from '../layouts/Layout.astro';
             <li>Responsabilidad futura</li>
           </ul>
         </div>
+        
 
+      </div>
+    </section>
+    <section class="cta-electropoint">
+      <div class="tech-grid-bg"></div>
+      <div class="container relative cta-container">
+        <div class="cta-content">
+          <span class="eyebrow">Movilidad Sostenible</span>
+          <h2>El futuro de la carga eléctrica está aquí</h2>
+          <p>Descubre <strong>ElectroPoint</strong>, nuestra red de estaciones de carga rápida integradas con energía renovable para el parque automotor boliviano.</p>
+          <a href="/" class="btn-primary">Conoce ElectroPoint</a>
+        </div>
       </div>
     </section>
 
@@ -319,5 +331,73 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 768px) {
     .grid-intro, .mv-grid, .grid-pv { grid-template-columns: 1fr; gap: 3rem; }
     .hero-section h1 { font-size: 2.5rem; }
+  }
+  /* --- Sección CTA ElectroPoint --- */
+  .cta-electropoint {
+    background-color: var(--brand-800);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-top: 4px solid var(--cta-main);
+  }
+
+  /* Reutilizamos el tech-grid-bg pero lo hacemos más sutil para el fondo oscuro */
+  .cta-electropoint .tech-grid-bg {
+    opacity: 0.05;
+    background-image: linear-gradient(var(--white) 1px, transparent 1px), linear-gradient(90deg, var(--white) 1px, transparent 1px);
+  }
+
+  .cta-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-content h2 {
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .cta-content p {
+    color: var(--brand-200);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .cta-content strong {
+    color: var(--cta-main);
+  }
+
+  /* --- Botón Primario Mejorado --- */
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--cta-main);
+    color: var(--brand-800) !important;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-header);
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--cta-main);
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translate(-3px, -3px);
+  }
+
+  .btn-primary:active {
+    transform: translate(2px, 2px);
   }
 </style>

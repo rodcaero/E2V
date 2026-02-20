@@ -13,17 +13,21 @@ const navItems: NavItem[] = [
   { name: 'Quiénes somos', href: '/quienes-somos' },
   { name: 'Noticias', href: '/noticias' },
   { name: 'Contacto', href: '/contacto' },
-  { name: '⚡ElectroPoint', href: '/', highlight: true }, // Resaltado
+  { name: '⚡ ElectroPoint', href: '/', highlight: true }, // Resaltado
 ];
 ---
+
+<div class="header-top-bar"></div>
 
 <header class="header">
   <div class="nav-container">
     <a href="/" class="logo">
-      <Image src={e2vLogo} alt="E2V Logo" class="footer-logo" quality="high"/>
+      <Image src={e2vLogo} alt="E2V Logo" class="header-logo" quality="high"/>
     </a>
 
     <nav id="menu" class="nav-links">
+      <div class="tech-grid-bg mobile-bg"></div>
+      
       <div class="links-wrapper">
         {navItems.map((item, index) => (
           <a 
@@ -44,13 +48,12 @@ const navItems: NavItem[] = [
 </header>
 
 <script>
-  // Un solo script limpio para la funcionalidad del menú móvil y View Transitions
   function setupMenu() {
     const btn = document.getElementById('btn-toggle');
     const menu = document.getElementById('menu');
 
     if (btn && menu) {
-      btn.onclick = null; // Limpiamos eventos previos
+      btn.onclick = null; 
       
       btn.onclick = () => {
         const isShowing = menu.classList.toggle('show');
@@ -74,87 +77,98 @@ const navItems: NavItem[] = [
 </script>
 
 <style>
-  .header {
-    background: var(--white);
-    border-bottom: 2px solid var(--brand-200);
-    position: sticky;
+  /* --- Adorno Superior --- */
+  .header-top-bar {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--brand-800) 0%, var(--cta-main) 50%, var(--brand-800) 100%);
+    position: fixed;
     top: 0;
+    z-index: 10000;
+  }
+
+  /* --- Base del Header --- */
+  .header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px); /* Efecto cristal moderno */
+    border-bottom: 1px solid var(--brand-200);
+    position: sticky;
+    top: 4px; /* Empuja el header debajo de la barra superior */
     z-index: 9999;
     height: 80px;
     display: flex;
-    align-items: center; /* Esto centra todo verticalmente en el header */
+    align-items: center;
     font-family: var(--font-main);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
   }
 
   .nav-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Centra el logo y el menú verticalmente */
+    align-items: center;
     width: 90%;
     max-width: 1200px;
     margin: auto;
     height: 100%;
   }
 
-  /* Centramos la imagen del logo dentro de su etiqueta a */
+  /* --- Logo --- */
   .logo { display: flex; align-items: center; height: 100%; }
-  .logo img { height: 75px; width: auto; display: block; }
+  .header-logo { height: 60px; width: auto; display: block; }
 
-  /* SOLUCIÓN AL DESCUADRE VERTICAL: Aseguramos que los enlaces se alineen en su centro */
+  /* --- Enlaces y Wrapper --- */
   .links-wrapper { 
     display: flex; 
-    gap: 30px; 
-    align-items: center; /* Clava todos los textos en el centro de la línea */
+    gap: 2rem; 
+    align-items: center; 
     height: 100%;
+    position: relative;
+    z-index: 2;
   }
 
-  /* Estilo base de los links */
   .nav-links a {
     text-decoration: none;
-    color: var(--brand-800);
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
     font-family: var(--font-main);
     transition: all 0.3s ease;
-    display: flex; /* Ayuda a que el texto interno no salte */
+    display: flex; 
     align-items: center;
   }
 
-  .regular-link:hover {
-    color: var(--cta-main);
+  /* --- Links Regulares (Efecto Subrayado Técnico) --- */
+  .regular-link {
+    color: var(--brand-800);
+    position: relative;
+    padding: 5px 0;
   }
 
-  /* BOTÓN ELECTROPOINT */
-  .btn-highlight {
-    background: var(--cta-main);
-    color: var(--cta-dark) !important;
-    padding: 10px 22px;
-    border-radius: 4px; 
-    box-shadow: 0 4px 0px var(--box-shadow);
-    /* Al usar margin-bottom compensamos visualmente la sombra para que no empuje el resto de elementos hacia arriba */
-    margin-bottom: 4px; 
+  .regular-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--cta-main);
+    transition: width 0.3s ease;
   }
 
-  .btn-highlight:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0px var(--box-shadow);
-    margin-bottom: 2px; /* Ajuste dinámico de compensación */
-    background: var(--cta-main);
-  }
+  .regular-link:hover { color: var(--cta-main); }
+  .regular-link:hover::after { width: 100%; }
 
-  .btn-highlight:active {
-    transform: translateY(2px);
-    box-shadow: 0 0px 0px var(--box-shadow);
-    margin-bottom: 6px; /* Ajuste dinámico de compensación */
-  }
+  
 
+
+  .mobile-bg { display: none; }
   .btn-toggle { display: none; }
 
-  /* RESPONSIVE MÓVIL */
+  /* --- RESPONSIVE MÓVIL --- */
   @media (max-width: 1024px) {
-    .btn-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; z-index: 10001; }
-    .btn-toggle span { width: 28px; height: 3px; background: var(--brand-800); transition: 0.3s; }
+    .btn-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; z-index: 10001; padding: 10px; }
+    .btn-toggle span { width: 28px; height: 3px; background: var(--brand-800); transition: 0.3s; border-radius: 2px; }
     .btn-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
     .btn-toggle.open span:nth-child(2) { opacity: 0; }
     .btn-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
@@ -169,25 +183,17 @@ const navItems: NavItem[] = [
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.4s ease-in-out;
+      transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Animación más suave */
       z-index: 10000;
     }
 
     .nav-links.show { right: 0; }
-    .links-wrapper { flex-direction: column; gap: 2rem; justify-content: center; }
     
-    .nav-links a { font-size: 20px; }
+   
+    .links-wrapper { flex-direction: column; gap: 2.5rem; justify-content: center; }
     
-    /* Ajuste de botón en móvil */
-    .btn-highlight {
-      box-shadow: none;
-      padding: 15px 40px;
-      margin-bottom: 0; /* Quitamos la compensación en móvil porque es una lista vertical */
-    }
+    .regular-link { font-size: 1.5rem; }
     
-    .btn-highlight:hover, .btn-highlight:active {
-      transform: none;
-      margin-bottom: 0;
-    }
+    
   }
 </style>

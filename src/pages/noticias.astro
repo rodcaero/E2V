@@ -29,9 +29,9 @@ const secondaryNews = sortedNews.slice(1);
     <section class="news-header">
       <div class="container">
         <div class="header-text">
-          <span class="eyebrow">Actualidad Nacional</span>
-          <h1>Monitor de Noticias</h1>
-          <p class="subtitle">Inteligencia de mercado sobre la transición energética en Bolivia.</p>
+          <span class="eyebrow fade-in">Actualidad Nacional</span>
+          <h1 class="fade-in delay-1">Monitor de Noticias</h1>
+          <p class="subtitle fade-in delay-2">Inteligencia de mercado sobre la transición energética en Bolivia.</p>
         </div>
       </div>
     </section>
@@ -40,7 +40,7 @@ const secondaryNews = sortedNews.slice(1);
       <div class="container">
         
         {featuredNews && (
-          <article class="featured-card">
+          <article class="featured-card fade-in delay-3">
             <div class="feat-image-wrap">
               <img src={featuredNews.frontmatter.image} alt={featuredNews.frontmatter.title} />
               <span class="category-tag">{featuredNews.frontmatter.category}</span>
@@ -57,8 +57,8 @@ const secondaryNews = sortedNews.slice(1);
         )}
 
         <div class="news-grid">
-          {secondaryNews.map((news) => (
-            <article class="news-card">
+          {secondaryNews.map((news, index) => (
+            <article class="news-card fade-in" style={`animation-delay: ${0.6 + (index * 0.15)}s;`}>
               <div class="card-image-wrap">
                 <img src={news.frontmatter.image} alt={news.frontmatter.title} />
                 <span class="category-tag-sm">{news.frontmatter.category}</span>
@@ -119,6 +119,26 @@ const secondaryNews = sortedNews.slice(1);
   .read-btn:hover { background: var(--cta-main, #f97316); color: #1a202c; }
   .read-link { font-weight: 700; text-transform: uppercase; color: #1a202c; text-decoration: none; border-bottom: 2px solid var(--cta-main, #f97316); align-self: flex-start; font-size: 0.9rem; padding-bottom: 2px; }
   .read-link:hover { color: var(--cta-main, #f97316); }
+
+  /* --- ANIMACIONES DE ENTRADA LIGERAS --- */
+  .fade-in { 
+    opacity: 0; 
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+  }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  @keyframes fadeIn { 
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    } 
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  }
 
   /* --- RESPONSIVE --- */
   @media (max-width: 900px) {
