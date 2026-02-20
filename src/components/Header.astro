@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import e2vLogo from '../assets/E2V.png';
+
 interface NavItem {
   name: string;
   href: string;
@@ -27,7 +28,7 @@ const navItems: NavItem[] = [
         {navItems.map((item, index) => (
           <a 
             href={item.href} 
-            class={item.highlight ? 'btn-highlight' : ''} 
+            class={item.highlight ? 'btn-highlight' : 'regular-link'} 
             style={`--i: ${index}`}
           >
             {item.name}
@@ -43,47 +44,20 @@ const navItems: NavItem[] = [
 </header>
 
 <script>
-  const btn = document.getElementById('btn-toggle');
-  const menu = document.getElementById('menu');
-
-  if (btn && menu) {
-    // Abrir/Cerrar menú
-    btn.onclick = () => {
-      const isShowing = menu.classList.toggle('show');
-      btn.classList.toggle('open');
-      document.body.style.overflow = isShowing ? 'hidden' : 'auto';
-    };
-
-    // Cerrar menú al hacer clic en cualquier enlace
-    const links = menu.querySelectorAll('a');
-    links.forEach(link => {
-      link.onclick = () => {
-        menu.classList.remove('show');
-        btn.classList.remove('open');
-        document.body.style.overflow = 'auto';
-      };
-    });
-  }
-</script>
-<script>
-  // Envolvemos toda la lógica en una función
+  // Un solo script limpio para la funcionalidad del menú móvil y View Transitions
   function setupMenu() {
     const btn = document.getElementById('btn-toggle');
     const menu = document.getElementById('menu');
 
-    // Validamos que existan en el DOM actual
     if (btn && menu) {
-      // 1. Limpiamos eventos anteriores para evitar que se dupliquen al cambiar de página
-      btn.onclick = null;
+      btn.onclick = null; // Limpiamos eventos previos
       
-      // 2. Asignamos el evento de abrir/cerrar
       btn.onclick = () => {
         const isShowing = menu.classList.toggle('show');
         btn.classList.toggle('open');
         document.body.style.overflow = isShowing ? 'hidden' : 'auto';
       };
 
-      // 3. Cerrar menú al hacer clic en cualquier enlace
       const links = menu.querySelectorAll('a');
       links.forEach(link => {
         link.onclick = () => {
@@ -95,14 +69,11 @@ const navItems: NavItem[] = [
     }
   }
 
-  // Ejecutar cuando la página cargue por primera vez
   setupMenu();
-
-  // Ejecutar CADA VEZ que el usuario navegue a otra página usando View Transitions
   document.addEventListener('astro:page-load', setupMenu);
 </script>
-<style>
 
+<style>
   .header {
     background: var(--white);
     border-bottom: 2px solid var(--brand-200);
@@ -111,22 +82,31 @@ const navItems: NavItem[] = [
     z-index: 9999;
     height: 80px;
     display: flex;
-    align-items: center;
+    align-items: center; /* Esto centra todo verticalmente en el header */
     font-family: var(--font-main);
   }
 
   .nav-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Centra el logo y el menú verticalmente */
     width: 90%;
     max-width: 1200px;
     margin: auto;
+    height: 100%;
   }
 
-  .logo img { height: 75px; width: auto; }
+  /* Centramos la imagen del logo dentro de su etiqueta a */
+  .logo { display: flex; align-items: center; height: 100%; }
+  .logo img { height: 75px; width: auto; display: block; }
 
-  .links-wrapper { display: flex; gap: 30px; align-items: center; }
+  /* SOLUCIÓN AL DESCUADRE VERTICAL: Aseguramos que los enlaces se alineen en su centro */
+  .links-wrapper { 
+    display: flex; 
+    gap: 30px; 
+    align-items: center; /* Clava todos los textos en el centro de la línea */
+    height: 100%;
+  }
 
   /* Estilo base de los links */
   .nav-links a {
@@ -137,9 +117,11 @@ const navItems: NavItem[] = [
     text-transform: uppercase;
     font-family: var(--font-main);
     transition: all 0.3s ease;
+    display: flex; /* Ayuda a que el texto interno no salte */
+    align-items: center;
   }
 
-  .nav-links a:not(.btn-highlight):hover {
+  .regular-link:hover {
     color: var(--cta-main);
   }
 
@@ -149,18 +131,22 @@ const navItems: NavItem[] = [
     color: var(--cta-dark) !important;
     padding: 10px 22px;
     border-radius: 4px; 
-    box-shadow: 0 4px 0px var(--box-shadow); /* Efecto de profundidad */
+    box-shadow: 0 4px 0px var(--box-shadow);
+    /* Al usar margin-bottom compensamos visualmente la sombra para que no empuje el resto de elementos hacia arriba */
+    margin-bottom: 4px; 
   }
 
   .btn-highlight:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 0px var(--box-shadow);
+    margin-bottom: 2px; /* Ajuste dinámico de compensación */
     background: var(--cta-main);
   }
 
   .btn-highlight:active {
     transform: translateY(2px);
     box-shadow: 0 0px 0px var(--box-shadow);
+    margin-bottom: 6px; /* Ajuste dinámico de compensación */
   }
 
   .btn-toggle { display: none; }
@@ -188,7 +174,7 @@ const navItems: NavItem[] = [
     }
 
     .nav-links.show { right: 0; }
-    .links-wrapper { flex-direction: column; gap: 2rem; }
+    .links-wrapper { flex-direction: column; gap: 2rem; justify-content: center; }
     
     .nav-links a { font-size: 20px; }
     
@@ -196,6 +182,12 @@ const navItems: NavItem[] = [
     .btn-highlight {
       box-shadow: none;
       padding: 15px 40px;
+      margin-bottom: 0; /* Quitamos la compensación en móvil porque es una lista vertical */
+    }
+    
+    .btn-highlight:hover, .btn-highlight:active {
+      transform: none;
+      margin-bottom: 0;
     }
   }
 </style>
