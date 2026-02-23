@@ -33,17 +33,22 @@ const { title, description = "Innovación y movilidad eléctrica sostenible en B
     <body>
         <Header transition:persist />
          <main transition:animate="fade">
-            <slot /> <script is:inline>
-      document.addEventListener('astro:page-load', () => {
-        // Buscamos todos los elementos que Cloudflare haya "protegido"
-        const protectedEmails = document.querySelectorAll('[data-cfemail]');
-        
-        if (protectedEmails.length > 0 && window.__cfEmailDn) {
-           // Forzamos a Cloudflare a volver a escanear el DOM
-           window.__cfEmailDn();
-        }
-      });
-    </script>
+            <slot /> 
+           <script is:inline>
+            document.addEventListener('astro:page-load', () => {
+                const enlace = document.getElementById('correo-contacto');
+                
+                if (enlace) {
+                const usuario = "info"; 
+                const dominio = "e2v.bo"; 
+                
+                // Actualizamos a dónde apunta el enlace
+                enlace.href = `mailto:${usuario}@${dominio}`;
+                // Actualizamos el texto que ve el usuario
+                enlace.textContent = `${usuario}@${dominio}`;
+                }
+            });
+            </script>
         </main>
         <Footer />
     </body>
