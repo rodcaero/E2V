@@ -95,7 +95,7 @@ const navItems: NavItem[] = [
     position: sticky;
     top: 4px; /* Empuja el header debajo de la barra superior */
     z-index: 9999;
-    height: 80px;
+    height: 80px; /* Altura amplia mantenida */
     display: flex;
     align-items: center;
     font-family: var(--font-main);
@@ -114,7 +114,9 @@ const navItems: NavItem[] = [
 
   /* --- Logo --- */
   .logo { display: flex; align-items: center; height: 100%; }
-  .header-logo { height: 60px; width: auto; display: block; }
+  
+  /* --- ACTUALIZADO: Logo en su tamaño máximo para este header (Desktop) --- */
+  .header-logo { height: 80px; width: auto; display: block; } 
 
   /* --- Enlaces y Wrapper --- */
   .links-wrapper { 
@@ -159,9 +161,6 @@ const navItems: NavItem[] = [
   .regular-link:hover { color: var(--cta-main); }
   .regular-link:hover::after { width: 100%; }
 
-  
-
-
   .mobile-bg { display: none; }
   .btn-toggle { display: none; }
 
@@ -183,17 +182,19 @@ const navItems: NavItem[] = [
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Animación más suave */
+      transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       z-index: 10000;
     }
 
     .nav-links.show { right: 0; }
     
-   
     .links-wrapper { flex-direction: column; gap: 2.5rem; justify-content: center; }
     
     .regular-link { font-size: 1.5rem; }
     
-    
+    /* --- ACTUALIZADO: Logo gigante también en móvil --- */
+    .header-logo {
+      height: 64px; 
+    }
   }
 </style>
