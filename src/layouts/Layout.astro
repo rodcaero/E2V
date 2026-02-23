@@ -34,19 +34,28 @@ const { title, description = "Innovación y movilidad eléctrica sostenible en B
         <Header transition:persist />
          <main transition:animate="fade">
             <slot /> 
-           <script is:inline>
+            <script is:inline>
             document.addEventListener('astro:page-load', () => {
-                const enlace = document.getElementById('correo-contacto');
+                // Buscamos todos los elementos con la clase, sin importar si son 'a' o 'span'
+                const elementos = document.querySelectorAll('.correo-contacto');
                 
-                if (enlace) {
+                // Preparamos el correo
                 const usuario = "info"; 
                 const dominio = "e2v.bo"; 
-                
-                // Actualizamos a dónde apunta el enlace
-                enlace.href = `mailto:${usuario}@${dominio}`;
-                // Actualizamos el texto que ve el usuario
-                enlace.textContent = `${usuario}@${dominio}`;
+                const correo = `${usuario}@${dominio}`;
+
+                elementos.forEach(elemento => {
+                // Preguntamos qué tipo de etiqueta es (el tagName siempre devuelve mayúsculas)
+                if (elemento.tagName === 'A') {
+                    // Lógica para etiquetas <a>
+                    elemento.href = `mailto:${correo}`;
+                    elemento.textContent = correo;
+                } else {
+                    // Lógica para <span>, <div>, <p>, etc.
+                    // Inyectamos el enlace completo por dentro
+                    elemento.innerHTML = `<a href="mailto:${correo}">${correo}</a>`;
                 }
+                });
             });
             </script>
         </main>

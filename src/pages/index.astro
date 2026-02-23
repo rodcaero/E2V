@@ -154,7 +154,7 @@ const recentNews = sortedNews.slice(0, 3);
             </a>
             <a href="mailto:info@e2v.bo" class="channel-pill">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              <span>info@e2v.bo</span>
+              <span id="correo-contacto" class="correo-contacto">Cargando correo...</span>
             </a>
           </div>
         </div>
@@ -271,8 +271,8 @@ const recentNews = sortedNews.slice(0, 3);
   .channel-pill { display: flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.6rem 1.2rem; border-radius: 50px; color: var(--white); text-decoration: none; transition: all 0.2s; }
   .channel-pill:hover { background: rgba(255,255,255,0.1); border-color: var(--cta-main); transform: translateY(-2px); }
   .channel-pill svg { color: var(--cta-main); width: 18px; height: 18px; }
-  .channel-pill span { font-weight: 500; font-size: 0.9rem; }
-
+  .channel-pill span { font-weight: 500; font-size: 0.9rem; color: var(--white);}
+  .channel-pill a { font-weight: 500; font-size: 0.9rem; color: var(--white);}
   .cta-action-side { flex: 0.8; display: flex; justify-content: flex-end; }
   .btn-cta-giant { background: var(--cta-main); color: var(--brand-800); padding: 1.2rem 2.2rem; font-weight: 800; font-size: 1rem; text-transform: uppercase; text-decoration: none; border-radius: var(--radius-sm); transition: transform 0.2s; display: flex; align-items: center; gap: 1rem; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
   .btn-cta-giant:hover { transform: translateY(-4px); background: var(--white); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
