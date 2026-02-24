@@ -15,6 +15,10 @@ const navItems: NavItem[] = [
   { name: 'Contacto', href: '/contacto' },
   { name: '⚡ ElectroPoint', href: '/', highlight: true }, // Resaltado
 ];
+
+// Lógica para detectar la ruta actual
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, "");
 ---
 
 <div class="header-top-bar"></div>
@@ -25,22 +29,30 @@ const navItems: NavItem[] = [
       <Image src={e2vLogo} alt="E2V Logo" class="header-logo" quality="high"/>
     </a>
 
-    <nav id="menu" class="nav-links">
+   <nav id="menu" class="nav-links">
       <div class="tech-grid-bg mobile-bg"></div>
       
       <div class="links-wrapper">
-        {navItems.map((item, index) => (
-          <a 
-            href={item.href} 
-            class={item.highlight ? 'btn-highlight' : 'regular-link'} 
-            style={`--i: ${index}`}
-          >
-            {item.name}
-          </a>
-        ))}
+        {navItems.map((item, index) => {
+          // Normalizamos el href del item para la comparación
+          const itemPath = item.href.replace(/\/$/, "");
+          const isActive = currentPath === itemPath || (item.href === '/' && currentPath === '');
+
+          return (
+            <a 
+              href={item.href} 
+              class:list={[
+                item.highlight ? 'btn-highlight' : 'regular-link',
+                { 'active': isActive } // Se añade la clase 'active' si coincide la ruta
+              ]}
+              style={`--i: ${index}`}
+            >
+              {item.name}
+            </a>
+          )
+        })}
       </div>
     </nav>
-
     <button id="btn-toggle" class="btn-toggle" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -146,7 +158,13 @@ const navItems: NavItem[] = [
     position: relative;
     padding: 5px 0;
   }
+.regular-link.active {
+    color: var(--cta-main);
+  }
 
+  .regular-link.active::after {
+    width: 100%; /* Forzamos que la línea se quede extendida */
+  }
   .regular-link::after {
     content: '';
     position: absolute;
