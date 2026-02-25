@@ -107,7 +107,7 @@ const currentPath = pathname.replace(/\/$/, "");
     position: sticky;
     top: 4px; /* Empuja el header debajo de la barra superior */
     z-index: 9999;
-    height: 80px; /* Altura amplia mantenida */
+    height: 60px; /* Altura amplia mantenida */
     display: flex;
     align-items: center;
     font-family: var(--font-main);
@@ -118,7 +118,7 @@ const currentPath = pathname.replace(/\/$/, "");
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: auto;
     height: 100%;
@@ -128,14 +128,14 @@ const currentPath = pathname.replace(/\/$/, "");
   .logo { display: flex; align-items: center; height: 100%; }
   
   /* --- ACTUALIZADO: Logo en su tamaño máximo para este header (Desktop) --- */
-  .header-logo { height: 80px; width: auto; display: block; } 
+  .header-logo { height: 90px; width: auto; display: block; transform: translateY(5px);} 
 
   /* --- Enlaces y Wrapper --- */
   .links-wrapper { 
     display: flex; 
     gap: 2rem; 
     align-items: center; 
-    height: 100%;
+    height: auto;
     position: relative;
     z-index: 2;
   }
@@ -182,6 +182,24 @@ const currentPath = pathname.replace(/\/$/, "");
   .mobile-bg { display: none; }
   .btn-toggle { display: none; }
 
+  /* --- Botón Destacado (ElectroPoint) --- */
+  .btn-highlight {
+    background-color: var(--cta-main); /* Toma tu color de acento (naranja/amarillo) */
+    color: #ffffff !important; /* Texto blanco para que resalte */
+    padding: 8px 18px; /* Espaciado interno para darle forma de botón */
+    border-radius: 8px; /* Bordes redondeados modernos */
+    font-weight: 800;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición muy suave */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra base sutil */
+  }
+
+  /* --- Efecto Hover para ElectroPoint --- */
+  .btn-highlight:hover {
+    transform: translateY(-3px) scale(1.03); /* Se levanta y crece ligeramente */
+    /* Cambia el '255, 165, 0' por los valores RGB de tu --cta-main si quieres que el resplandor sea exacto */
+    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.4); 
+    filter: brightness(1.1); /* Le da un toque extra de brillo al color */
+  }
   /* --- RESPONSIVE MÓVIL --- */
   @media (max-width: 1024px) {
     .btn-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; z-index: 10001; padding: 10px; }
@@ -212,7 +230,7 @@ const currentPath = pathname.replace(/\/$/, "");
     
     /* --- ACTUALIZADO: Logo gigante también en móvil --- */
     .header-logo {
-      height: 64px; 
+      height: 74px; 
     }
   }
 </style>
